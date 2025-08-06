@@ -39,36 +39,4 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
     doc.text("Hoja Única de Correspondencia Externa", 50, 28);
 
     doc.setFontSize(10);
-    doc.text(`Nº Hoja: ${numero}`, 150, 10);
-
-    doc.setFontSize(9);
-    doc.text(`Fecha: ${fecha}`, 10, 50);
-    doc.text(`De: ${de}`, 10, 58);
-    doc.text(`Cargo: ${cargo}`, 100, 58);
-
-    doc.text(`Destinatario: ${destinatarioNombre}`, 10, 66);
-    doc.text(`Cargo destinatario: ${cargoDestinatario}`, 100, 66);
-
-    doc.text(`Referencia: ${referencia}`, 10, 74);
-
-    // ✅ NUEVA LÍNEA AÑADIDA: Primer destinatario entre Referencia e Instructivo
-    doc.text(`Primer destinatario:`, 10, 82); // Parte izquierda
-    doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 80, 82); // A la derecha
-
-    doc.text("Instructivo:", 10, 90);
-    const splitText = doc.splitTextToSize(instructivo, 180);
-    doc.text(splitText, 10, 95);
-
-    doc.setFontSize(9);
-    doc.text("YPFB Cochabamba - Documento para uso interno oficial", 50, 280);
-
-    doc.save(`Hoja_Correspondencia_${numero}.pdf`);
-
-    document.getElementById('correspondenciaForm').reset();
-  };
-
-  logo.onerror = function () {
-    alert("Error al cargar el logo. Asegúrate de que 'logo-ypfb.png' está en la misma carpeta que tu HTML.");
-  };
-});
-
+    doc.text(`Nº Hoja: ${numero}`, 150, 10
