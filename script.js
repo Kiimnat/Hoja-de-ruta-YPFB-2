@@ -46,35 +46,35 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   const pageWidth = doc.internal.pageSize.getWidth();
 
-  // Reducción extra de 6 puntos verticales aprox.
+  // Ajustes verticales según tu pedido:
   doc.setFontSize(18);
   const titulo1 = "Yacimientos Petrolíferos Fiscales Bolivianos";
   const titulo1Width = doc.getTextWidth(titulo1);
-  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 28); // Antes 34.2
+  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 39); // 34 + 5 puntos más abajo del logo
 
   doc.setFontSize(14);
   const titulo2 = "Hoja Única de Correspondencia Externa";
   const titulo2Width = doc.getTextWidth(titulo2);
-  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 39); // Antes 45
+  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 45); // 6 puntos menos desde antes (antes 51 aprox)
 
   doc.setFontSize(10);
 
   doc.setFont("helvetica", "bold");
-  doc.text("De:", 10, 56); // Antes 62
-  doc.text("Cargo:", 100, 56);
-  doc.text("Destinatario:", 10, 64);
-  doc.text("Cargo destinatario:", 100, 64);
-  doc.text("Referencia:", 10, 72);
+  doc.text("De:", 10, 57); // 3 puntos menos (antes 60)
+  doc.text("Cargo:", 100, 57);
+  doc.text("Destinatario:", 10, 65);
+  doc.text("Cargo destinatario:", 100, 65);
+  doc.text("Referencia:", 10, 73);
   doc.setFont("helvetica", "normal");
 
-  doc.text(de, 25, 56);
-  doc.text(cargo, 120, 56);
-  doc.text(destinatarioNombre, 35, 64);
-  doc.text(cargoDestinatario, 140, 64);
-  doc.text(referencia, 35, 72);
+  doc.text(de, 25, 57);
+  doc.text(cargo, 120, 57);
+  doc.text(destinatarioNombre, 35, 65);
+  doc.text(cargoDestinatario, 140, 65);
+  doc.text(referencia, 35, 73);
 
   doc.setFont("helvetica", "bold");
-  doc.text("PRIMER DESTINATARIO:", 10, 78); // Antes 86
+  doc.text("PRIMER DESTINATARIO:", 10, 79);
 
   const primerDestX = 10;
   const espacioSeparacion = 17;
@@ -83,14 +83,14 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   doc.setFont("helvetica", "normal");
   const textoDestinatario = `${destinatarioNombre} - ${cargoDestinatario}`;
-  doc.text(textoDestinatario, textoX, 78);
+  doc.text(textoDestinatario, textoX, 79);
 
   doc.setFont("helvetica", "bold");
-  doc.text("INSTRUCTIVO:", 10, 86); // Antes 94
+  doc.text("INSTRUCTIVO:", 10, 87);
   doc.setFont("helvetica", "normal");
 
   const splitText = doc.splitTextToSize(instructivo, 180);
-  doc.text(splitText, 10, 91); // Antes 99
+  doc.text(splitText, 10, 92);
 
   doc.setFontSize(9);
   const pie = "YPFB Cochabamba - Documento para uso interno oficial";
@@ -106,4 +106,3 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
-
