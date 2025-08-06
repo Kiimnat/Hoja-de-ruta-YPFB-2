@@ -50,12 +50,12 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
   doc.setFontSize(18);
   const titulo1 = "Yacimientos Petrolíferos Fiscales Bolivianos";
   const titulo1Width = doc.getTextWidth(titulo1);
-  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 39); // 34 + 5 puntos más abajo del logo
+  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 43); // 34 + 5 puntos más abajo del logo
 
   doc.setFontSize(14);
   const titulo2 = "Hoja Única de Correspondencia Externa";
   const titulo2Width = doc.getTextWidth(titulo2);
-  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 45); // 6 puntos menos desde antes (antes 51 aprox)
+  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 48); // 6 puntos menos desde antes (antes 51 aprox)
 
   doc.setFontSize(10);
 
@@ -106,3 +106,4 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
+
