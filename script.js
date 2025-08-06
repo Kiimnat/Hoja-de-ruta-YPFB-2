@@ -7,11 +7,14 @@ document.getElementById('correspondenciaForm').addEventListener('submit', functi
     // Datos del formulario
     const fecha = this.fecha.value;
     const de = this.de.value;
-    const cargo = this.cargo.value;
+    const cargoDe = this.cargoDe.value;
     
-    // Separar nombre y cargo del campo "para"
+    // Para (nombre y cargo separado)
     const paraRaw = this.para.value;
-    const [paraNombre] = paraRaw.split("|"); // solo toma el nombre
+    const [paraNombre] = paraRaw.split("|");
+
+    // Cargo del destinatario que ahora está en campo aparte
+    const cargoPara = this.cargoPara.value;
 
     const asunto = this.asunto.value;
     const contenido = this.contenido.value;
@@ -19,7 +22,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', functi
 
     // Insertar logo
     const img = new Image();
-    img.src = 'logo-ypfb.png'; // asegúrate de que la imagen esté en la misma carpeta
+    img.src = 'logo-ypfb.png';
     img.onload = function() {
         doc.addImage(img, 'PNG', 10, 10, 30, 30);
 
@@ -37,14 +40,15 @@ document.getElementById('correspondenciaForm').addEventListener('submit', functi
         doc.setFontSize(12);
         doc.text(`Fecha: ${fecha}`, 10, 50);
         doc.text(`De: ${de}`, 10, 60);
-        doc.text(`Cargo: ${cargo}`, 10, 70);
+        doc.text(`Cargo (De): ${cargoDe}`, 10, 70);
         doc.text(`Para: ${paraNombre}`, 10, 80);
-        doc.text(`Asunto: ${asunto}`, 10, 90);
+        doc.text(`Cargo (Para): ${cargoPara}`, 10, 90);
+        doc.text(`Asunto: ${asunto}`, 10, 100);
 
         // Contenido
-        doc.text("Contenido:", 10, 105);
+        doc.text("Contenido:", 10, 115);
         let splitText = doc.splitTextToSize(contenido, 180);
-        doc.text(splitText, 10, 110);
+        doc.text(splitText, 10, 120);
 
         // Pie de página
         doc.setFontSize(10);
