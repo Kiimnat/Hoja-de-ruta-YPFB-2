@@ -38,7 +38,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', functi
     doc.setFontSize(14);
     doc.text("Hoja Única de Correspondencia Externa", 50, 28);
 
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.text(`Nº Hoja: ${numero}`, 150, 10);
 
     doc.text(`Fecha y hora: ${fechaHora}`, 10, 50);
@@ -69,7 +69,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', functi
     doc.setFontSize(14);
     doc.text("Hoja Única de Correspondencia Externa", 50, 28);
 
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.text(`Nº Hoja: ${numero}`, 150, 10);
 
     doc.text(`Fecha y hora: ${fechaHora}`, 10, 50);
@@ -94,4 +94,3 @@ document.getElementById('correspondenciaForm').addEventListener('submit', functi
     doc.save(`Hoja_Correspondencia_${numero}.pdf`);
   };
 });
-
