@@ -42,11 +42,11 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
         doc.text("Cargo destinatario:", 100, 72);
         doc.text("Referencia:", 12, 79);
         doc.setFont("helvetica", "normal");
-        doc.text(de, 30, 65);
-        doc.text(cargo, 120, 65);
-        doc.text(destinatarioNombre, 42, 72);
-        doc.text(cargoDestinatario, 140, 72);
-        doc.text(referencia, 42, 79);
+        doc.text(de, 25, 65);
+        doc.text(cargo, 113, 65);
+        doc.text(destinatarioNombre, 32, 72);
+        doc.text(cargoDestinatario, 130, 72);
+        doc.text(referencia, 32, 79);
 
         // Recuadro combinado Primer destinatario + Instructivo
         doc.rect(10, 95, 190, 65);
@@ -74,3 +74,4 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
         alert("Por favor, selecciona un archivo de imagen para el logo.");
     }
 });
+
