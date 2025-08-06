@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoja de Correspondencia - YPFB</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- jsPDF CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hoja de Correspondencia Interna - YPFB</h1>
+        <form id="correspondenciaForm">
+            <label>Fecha:</label>
+            <input type="date" name="fecha" required>
+
+            <label>De:</label>
+            <input type="text" name="de" value="YPFB Cochabamba" required>
+
+            <label>Para:</label>
+            <select name="para" required>
+                <option value="">Seleccionar destinatario</option>
+                <option>ESTEPHANYA FERNANDA ALVAREZ VARGAS - SECRETARIA GENERAL</option>
+                <option>CELINA VARGAS NOGALES - CHOFER</option>
+                <option>PAOLA ALEXANDRA MOREIRA LEON - SECRETARIA DE TENCICO DE PARTICIPACION SOCIAL</option>
+                <option>KIMBERLY NATALY PONCE ROMERO- TECNICA DE CAMPO</option>
+                <option>ABIGAIL ROJAS ISIDRO- GERENTE REGINAL DE YPFB</option>
+                <option>FERNANDA CALISAYA TABOADA - JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL</option>
+            </select>
+
+            <label>Asunto:</label>
+            <input type="text" name="asunto" required>
+
+            <label>Contenido:</label>
+            <textarea name="contenido" rows="5" required></textarea>
+
+            <button type="submit">Generar Hoja de Correspondencia</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
