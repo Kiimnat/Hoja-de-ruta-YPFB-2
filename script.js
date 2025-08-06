@@ -78,14 +78,14 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   // Recuadro primer destinatario
   doc.setFont("helvetica", "bold");
-  doc.rect(10, 80, 190, 40);
+  doc.rect(10, 80, 190, 10);
   doc.text("PRIMER DESTINATARIO:", 12, 78);
   doc.setFont("helvetica", "normal");
   doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 65, 78);
-  doc.text("INSTRUCTIVO:", 12, 91);
+  doc.text("INSTRUCTIVO:", 12, 84);
   doc.setFont("helvetica", "normal");
   const instructivoTexto = doc.splitTextToSize(instructivo, 185);
-  doc.text(instructivoTexto, 12, 96);
+  doc.text(instructivoTexto, 12, 89);
 
   // Pie de página
   doc.setFontSize(9);
@@ -101,6 +101,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
+
 
 
 
