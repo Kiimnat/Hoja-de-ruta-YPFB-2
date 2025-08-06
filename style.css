@@ -53,3 +53,20 @@ button {
 button:hover {
     background-color: #004d66;
 }
+
+/* NUEVO: Para mostrar "De" y "Cargo" en una línea */
+.linea {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px; /* Para separar de otros elementos */
+}
+
+.linea .item {
+    flex: 1;
+}
+
+.linea label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
