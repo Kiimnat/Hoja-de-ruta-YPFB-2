@@ -78,7 +78,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   // Recuadro primer destinatario
   doc.setFont("helvetica", "bold");
-  doc.rect(10, 52, 190, 10);
+  doc.rect(10, 60, 190, 30);
   doc.text("PRIMER DESTINATARIO:", 12, 78);
   doc.setFont("helvetica", "normal");
   doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 65, 78);
@@ -101,6 +101,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
+
 
 
 
