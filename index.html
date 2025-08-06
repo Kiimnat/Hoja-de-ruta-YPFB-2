@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hoja de Correspondencia - YPFB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hoja de Correspondencia</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>Hoja de Correspondencia Externa</h1>
+    <h1>Hoja de Correspondencia</h1>
     <form id="correspondenciaForm">
       <label for="fecha">Fecha:</label>
       <input type="date" id="fecha" name="fecha" required />
@@ -20,57 +19,27 @@
       <label for="cargo">Cargo:</label>
       <input type="text" id="cargo" name="cargo" required />
 
-      <label for="destinatarioSelect">Destinatario:</label>
-      <select name="destinatario" id="destinatarioSelect" onchange="actualizarCargoDestinatario()" required>
-        <option value="">Seleccionar destinatario</option>
-        <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">
-          ESTEPHANYA FERNANDA ALVAREZ VARGAS - SECRETARIA GENERAL
-        </option>
-        <option value="CELINA VARGAS NOGALES|CHOFER">
-          CELINA VARGAS NOGALES - CHOFER
-        </option>
-        <option value="PAOLA ALEXANDRA MOREIRA LEON|SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL">
-          PAOLA ALEXANDRA MOREIRA LEON - SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL
-        </option>
-        <option value="KIMBERLY NATALY PONCE ROMERO|TECNICA DE CAMPO">
-          KIMBERLY NATALY PONCE ROMERO - TECNICA DE CAMPO
-        </option>
-        <option value="ABIGAIL ROJAS ISIDRO|GERENTE REGIONAL DE YPFB">
-          ABIGAIL ROJAS ISIDRO - GERENTE REGIONAL DE YPFB
-        </option>
-        <option value="FERNANDA CALISAYA TABOADA|JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL">
-          FERNANDA CALISAYA TABOADA - JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL
-        </option>
+      <label for="destinatario">Destinatario:</label>
+      <select id="destinatario" name="destinatario" required>
+        <option value="">Seleccione un destinatario</option>
+        <option value="Óscar García|Administrador">Óscar García</option>
+        <option value="Ana Pérez|Gerente">Ana Pérez</option>
       </select>
 
-      <label for="cargoDestinatario">Cargo destinatario:</label>
-      <input type="text" id="cargoDestinatario" name="cargoDestinatario" readonly />
+      <label for="cargoDestinatario">Cargo del destinatario:</label>
+      <input type="text" id="cargoDestinatario" name="cargoDestinatario" required />
 
-      <label for="asunto">Asunto:</label>
-      <input type="text" id="asunto" name="asunto" required />
+      <label for="referencia">Referencia:</label>
+      <input type="text" id="referencia" name="referencia" required />
 
-      <label for="contenido">Contenido:</label>
-      <textarea id="contenido" name="contenido" rows="5" required></textarea>
+      <label for="instructivo">Instructivo:</label>
+      <textarea id="instructivo" name="instructivo" rows="4" required></textarea>
 
-      <button type="submit" id="generarBtn">Generar Hoja de Correspondencia</button>
+      <button type="submit">Generar hoja de correspondencia</button>
     </form>
   </div>
 
-  <script>
-    function actualizarCargoDestinatario() {
-      const select = document.getElementById("destinatarioSelect");
-      const valor = select.value;
-      const campoCargoDestinatario = document.getElementById("cargoDestinatario");
-
-      if (valor.includes("|")) {
-        const [nombre, cargo] = valor.split("|");
-        campoCargoDestinatario.value = cargo;
-      } else {
-        campoCargoDestinatario.value = "";
-      }
-    }
-  </script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
