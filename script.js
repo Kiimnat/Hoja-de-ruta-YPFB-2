@@ -46,37 +46,37 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   const pageWidth = doc.internal.pageSize.getWidth();
 
-  // Texto título más cerca del logo (Y=38)
+  // Ajuste espacio: bajar un poco el título (antes Y=38 ahora Y=36)
   doc.setFontSize(18);
   const titulo1 = "Yacimientos Petrolíferos Fiscales Bolivianos";
   const titulo1Width = doc.getTextWidth(titulo1);
-  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 38); // <--- antes 40
+  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 36);
 
-  // Subtítulo justo debajo del título, espacio reducido (Y=50)
+  // Ajuste espacio: bajar un poco subtítulo (antes Y=50 ahora Y=48)
   doc.setFontSize(14);
   const titulo2 = "Hoja Única de Correspondencia Externa";
   const titulo2Width = doc.getTextWidth(titulo2);
-  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 50); // <--- antes 53
+  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 48);
 
   doc.setFontSize(10);
 
-  // Etiquetas en negrita con espacio reducido (Y=67)
+  // Etiquetas en negrita con espacio reducido (antes Y=67 ahora Y=65)
   doc.setFont("helvetica", "bold");
-  doc.text("De:", 10, 67);
-  doc.text("Cargo:", 100, 67);
-  doc.text("Destinatario:", 10, 75);
-  doc.text("Cargo destinatario:", 100, 75);
-  doc.text("Referencia:", 10, 83);
+  doc.text("De:", 10, 65);
+  doc.text("Cargo:", 100, 65);
+  doc.text("Destinatario:", 10, 73);
+  doc.text("Cargo destinatario:", 100, 73);
+  doc.text("Referencia:", 10, 81);
   doc.setFont("helvetica", "normal");
 
-  doc.text(de, 25, 67);
-  doc.text(cargo, 120, 67);
-  doc.text(destinatarioNombre, 35, 75);
-  doc.text(cargoDestinatario, 140, 75);
-  doc.text(referencia, 35, 83);
+  doc.text(de, 25, 65);
+  doc.text(cargo, 120, 65);
+  doc.text(destinatarioNombre, 35, 73);
+  doc.text(cargoDestinatario, 140, 73);
+  doc.text(referencia, 35, 81);
 
   doc.setFont("helvetica", "bold");
-  doc.text("PRIMER DESTINATARIO:", 10, 91);
+  doc.text("PRIMER DESTINATARIO:", 10, 89);
 
   const primerDestX = 10;
   const espacioSeparacion = 17;
@@ -85,14 +85,14 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   doc.setFont("helvetica", "normal");
   const textoDestinatario = `${destinatarioNombre} - ${cargoDestinatario}`;
-  doc.text(textoDestinatario, textoX, 91);
+  doc.text(textoDestinatario, textoX, 89);
 
   doc.setFont("helvetica", "bold");
-  doc.text("INSTRUCTIVO:", 10, 99);
+  doc.text("INSTRUCTIVO:", 10, 97);
   doc.setFont("helvetica", "normal");
 
   const splitText = doc.splitTextToSize(instructivo, 180);
-  doc.text(splitText, 10, 104);
+  doc.text(splitText, 10, 102);
 
   doc.setFontSize(9);
   const pie = "YPFB Cochabamba - Documento para uso interno oficial";
