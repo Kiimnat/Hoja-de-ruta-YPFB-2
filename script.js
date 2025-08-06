@@ -62,7 +62,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
   doc.setFontSize(10);
 
   // Recuadro para datos generales
-  doc.rect(10, 52, 190, 15); // rectángulo grande
+  doc.rect(10, 52, 190, 20); // rectángulo grande
   doc.setFont("helvetica", "bold");
   doc.text("De:", 12, 57);
   doc.text("Cargo:", 100, 57);
@@ -78,7 +78,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   // Recuadro primer destinatario
   doc.setFont("helvetica", "bold");
-  doc.rect(10, 80, 190, 30);
+  doc.rect(10, 70, 190, 30);
   doc.text("PRIMER DESTINATARIO:", 12, 78);
   doc.setFont("helvetica", "normal");
   doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 65, 78);
@@ -101,6 +101,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
+
 
 
 
