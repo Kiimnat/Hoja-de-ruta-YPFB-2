@@ -10,23 +10,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hoja de Correspondencia Interna - YPFB</h1>
+        <h1>Hoja de Correspondencia Externa</h1>
         <form id="correspondenciaForm">
             <label>Fecha:</label>
             <input type="date" name="fecha" required>
 
             <label>De:</label>
-            <input type="text" name="de" value="YPFB Cochabamba" required>
+            <input type="text" name="de" required>
+            
+            <label>Cargo:</label>
+            <input type="text" name="cargo" required>
 
             <label>Para:</label>
-            <select name="para" required>
+            <select name="para" id="paraSelect" onchange="actualizarCargo()" required>
                 <option value="">Seleccionar destinatario</option>
-                <option>ESTEPHANYA FERNANDA ALVAREZ VARGAS - SECRETARIA GENERAL</option>
-                <option>CELINA VARGAS NOGALES - CHOFER</option>
-                <option>PAOLA ALEXANDRA MOREIRA LEON - SECRETARIA DE TENCICO DE PARTICIPACION SOCIAL</option>
-                <option>KIMBERLY NATALY PONCE ROMERO- TECNICA DE CAMPO</option>
-                <option>ABIGAIL ROJAS ISIDRO- GERENTE REGINAL DE YPFB</option>
-                <option>FERNANDA CALISAYA TABOADA - JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL</option>
+                <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">ESTEPHANYA FERNANDA ALVAREZ VARGAS</option>
+                <option value="CELINA VARGAS NOGALES|CHOFER">CELINA VARGAS NOGALES</option>
+                <option value="PAOLA ALEXANDRA MOREIRA LEON|SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL">PAOLA ALEXANDRA MOREIRA LEON</option>
+                <option value="KIMBERLY NATALY PONCE ROMERO|TECNICA DE CAMPO">KIMBERLY NATALY PONCE ROMERO</option>
+                <option value="ABIGAIL ROJAS ISIDRO|GERENTE REGIONAL DE YPFB">ABIGAIL ROJAS ISIDRO</option>
+                <option value="FERNANDA CALISAYA TABOADA|JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL">FERNANDA CALISAYA TABOADA</option>
             </select>
 
             <label>Asunto:</label>
@@ -38,6 +41,25 @@
             <button type="submit">Generar Hoja de Correspondencia</button>
         </form>
     </div>
+
+    <script>
+        function actualizarCargo() {
+            const select = document.getElementById("paraSelect");
+            const selectedValue = select.value;
+
+            if (selectedValue.includes("|")) {
+                const [nombre, cargo] = selectedValue.split("|");
+
+                // Coloca solo el nombre visible como valor en el select (opcional)
+                select.options[select.selectedIndex].text = nombre;
+
+                // Llena el campo de cargo automáticamente
+                document.getElementsByName("cargo")[0].value = cargo;
+            } else {
+                document.getElementsByName("cargo")[0].value = "";
+            }
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>
