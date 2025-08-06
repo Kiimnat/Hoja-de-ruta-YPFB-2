@@ -70,11 +70,11 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
   doc.text("Cargo destinatario:", 100, 62);
   doc.text("Referencia:", 12, 67);
   doc.setFont("helvetica", "normal");
-  doc.text(de, 30, 57);
-  doc.text(cargo, 120, 57);
-  doc.text(destinatarioNombre, 42, 62);
-  doc.text(cargoDestinatario, 140, 62);
-  doc.text(referencia, 42, 67);
+  doc.text(de, 17, 57);
+  doc.text(cargo, 110, 57);
+  doc.text(destinatarioNombre, 22, 62);
+  doc.text(cargoDestinatario, 130, 62);
+  doc.text(referencia, 22, 67);
 
   // Recuadro primer destinatario
   doc.setFont("helvetica", "bold");
@@ -105,3 +105,4 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
+
