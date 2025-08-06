@@ -1,66 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoja de Correspondencia - YPFB</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- jsPDF CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>Hoja de Correspondencia - YPFB</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Hoja de Correspondencia Externa</h1>
-        <form id="correspondenciaForm">
-            <label>Fecha:</label>
-            <input type="date" name="fecha" required>
+  <form id="correspondenciaForm">
+    <label>De:</label>
+    <input type="text" name="de" required>
 
-            <label>De:</label>
-            <input type="text" name="de" required>
-            
-            <label>Cargo:</label>
-            <input type="text" name="cargo" required>
+    <label>Cargo (De):</label>
+    <input type="text" name="cargoDe" required>
 
-            <label>Para:</label>
-            <select name="para" id="paraSelect" onchange="actualizarCargo()" required>
-                <option value="">Seleccionar destinatario</option>
-                <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">ESTEPHANYA FERNANDA ALVAREZ VARGAS</option>
-                <option value="CELINA VARGAS NOGALES|CHOFER">CELINA VARGAS NOGALES</option>
-                <option value="PAOLA ALEXANDRA MOREIRA LEON|SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL">PAOLA ALEXANDRA MOREIRA LEON</option>
-                <option value="KIMBERLY NATALY PONCE ROMERO|TECNICA DE CAMPO">KIMBERLY NATALY PONCE ROMERO</option>
-                <option value="ABIGAIL ROJAS ISIDRO|GERENTE REGIONAL DE YPFB">ABIGAIL ROJAS ISIDRO</option>
-                <option value="FERNANDA CALISAYA TABOADA|JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL">FERNANDA CALISAYA TABOADA</option>
-            </select>
+    <label>Para:</label>
+    <select name="para" id="paraSelect" onchange="actualizarCargoPara()" required>
+      <option value="">Seleccionar destinatario</option>
+      <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">
+        ESTEPHANYA FERNANDA ALVAREZ VARGAS - Secretaria General
+      </option>
+      <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|ASISTENTE GENERAL">
+        ESTEPHANYA FERNANDA ALVAREZ VARGAS - Asistente General
+      </option>
+      <option value="CELINA VARGAS NOGALES|CHOFER">
+        CELINA VARGAS NOGALES - Chofer
+      </option>
+      <!-- Más opciones aquí -->
+    </select>
 
-            <label>Asunto:</label>
-            <input type="text" name="asunto" required>
+    <label>Cargo (Para):</label>
+    <input type="text" name="cargoPara" id="cargoPara" readonly>
 
-            <label>Contenido:</label>
-            <textarea name="contenido" rows="5" required></textarea>
+    <!-- Otros campos del formulario -->
+    <button type="submit">Generar Hoja de Correspondencia</button>
+  </form>
 
-            <button type="submit">Generar Hoja de Correspondencia</button>
-        </form>
-    </div>
+  <script>
+    function actualizarCargoPara() {
+      const select = document.getElementById("paraSelect");
+      const valor = select.value;
 
-    <script>
-        function actualizarCargo() {
-            const select = document.getElementById("paraSelect");
-            const selectedValue = select.value;
-
-            if (selectedValue.includes("|")) {
-                const [nombre, cargo] = selectedValue.split("|");
-
-                // Coloca solo el nombre visible como valor en el select (opcional)
-                select.options[select.selectedIndex].text = nombre;
-
-                // Llena el campo de cargo automáticamente
-                document.getElementsByName("cargo")[0].value = cargo;
-            } else {
-                document.getElementsByName("cargo")[0].value = "";
-            }
-        }
-    </script>
-
-    <script src="script.js"></script>
+      if (valor.includes("|")) {
+        const [nombre, cargo] = valor.split("|");
+        document.getElementById("cargoPara").value = cargo;
+      } else {
+        document.getElementById("cargoPara").value = "";
+      }
+    }
+  </script>
 </body>
 </html>
