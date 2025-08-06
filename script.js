@@ -51,9 +51,13 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
     doc.text(`Referencia: ${referencia}`, 10, 74);
 
-    doc.text("Instructivo:", 10, 82);
+    // ✅ NUEVA LÍNEA AÑADIDA: Primer destinatario entre Referencia e Instructivo
+    doc.text(`Primer destinatario:`, 10, 82); // Parte izquierda
+    doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 80, 82); // A la derecha
+
+    doc.text("Instructivo:", 10, 90);
     const splitText = doc.splitTextToSize(instructivo, 180);
-    doc.text(splitText, 10, 87);
+    doc.text(splitText, 10, 95);
 
     doc.setFontSize(9);
     doc.text("YPFB Cochabamba - Documento para uso interno oficial", 50, 280);
@@ -67,3 +71,4 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
     alert("Error al cargar el logo. Asegúrate de que 'logo-ypfb.png' está en la misma carpeta que tu HTML.");
   };
 });
+
