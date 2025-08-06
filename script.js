@@ -71,9 +71,8 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
   doc.setFont("helvetica", "bold");
   doc.text("PRIMER DESTINATARIO:", 10, 82);
 
-  // Aquí solo la separación modificada a 1 cm (28.35 unidades)
   const primerDestX = 10;
-  const espacioSeparacion = 28.35; // 1 cm
+  const espacioSeparacion = 17; // espacio reducido a 0.6 cm aprox.
   const etiquetaWidth = doc.getTextWidth("PRIMER DESTINATARIO:");
   const textoX = primerDestX + etiquetaWidth + espacioSeparacion;
 
