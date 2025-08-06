@@ -51,13 +51,13 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   const pageWidth = doc.internal.pageSize.getWidth();
 
-  // Texto título centrado (más abajo, para dar espacio al logo)
+  // Texto título centrado y un poco más cerca del logo (Y=40)
   doc.setFontSize(18);
   const titulo1 = "Yacimientos Petrolíferos Fiscales Bolivianos";
   const titulo1Width = doc.getTextWidth(titulo1);
-  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 45);
+  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 40);
 
-  // Subtítulo centrado justo debajo del título con menos espacio
+  // Subtítulo centrado justo debajo del título con espacio aumentado (Y=53)
   doc.setFontSize(14);
   const titulo2 = "Hoja Única de Correspondencia Externa";
   const titulo2Width = doc.getTextWidth(titulo2);
@@ -65,25 +65,25 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   doc.setFontSize(10);
 
-  // Etiquetas en negrita
+  // Etiquetas en negrita con espacio aumentado (Y=70)
   doc.setFont("helvetica", "bold");
-  doc.text("De:", 10, 58);
-  doc.text("Cargo:", 100, 58);
-  doc.text("Destinatario:", 10, 66);
-  doc.text("Cargo destinatario:", 100, 66);
-  doc.text("Referencia:", 10, 74);
+  doc.text("De:", 10, 70);
+  doc.text("Cargo:", 100, 70);
+  doc.text("Destinatario:", 10, 78);
+  doc.text("Cargo destinatario:", 100, 78);
+  doc.text("Referencia:", 10, 86);
   doc.setFont("helvetica", "normal");
 
-  // Valores
-  doc.text(de, 25, 58);
-  doc.text(cargo, 120, 58);
-  doc.text(destinatarioNombre, 35, 66);
-  doc.text(cargoDestinatario, 140, 66);
-  doc.text(referencia, 35, 74);
+  // Valores con sus respectivas posiciones actualizadas
+  doc.text(de, 25, 70);
+  doc.text(cargo, 120, 70);
+  doc.text(destinatarioNombre, 35, 78);
+  doc.text(cargoDestinatario, 140, 78);
+  doc.text(referencia, 35, 86);
 
   // PRIMER DESTINATARIO en mayúsculas y negrita
   doc.setFont("helvetica", "bold");
-  doc.text("PRIMER DESTINATARIO:", 10, 82);
+  doc.text("PRIMER DESTINATARIO:", 10, 94);
 
   const primerDestX = 10;
   const espacioSeparacion = 17; // espacio reducido a 0.6 cm aprox.
@@ -92,15 +92,15 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   doc.setFont("helvetica", "normal");
   const textoDestinatario = `${destinatarioNombre} - ${cargoDestinatario}`;
-  doc.text(textoDestinatario, textoX, 82);
+  doc.text(textoDestinatario, textoX, 94);
 
   // INSTRUCTIVO en mayúsculas y negrita
   doc.setFont("helvetica", "bold");
-  doc.text("INSTRUCTIVO:", 10, 90);
+  doc.text("INSTRUCTIVO:", 10, 102);
   doc.setFont("helvetica", "normal");
 
   const splitText = doc.splitTextToSize(instructivo, 180);
-  doc.text(splitText, 10, 95);
+  doc.text(splitText, 10, 107);
 
   // Pie de página centrado
   doc.setFontSize(9);
