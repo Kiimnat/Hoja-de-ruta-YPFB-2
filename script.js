@@ -49,48 +49,12 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
   doc.text("Hoja Única de Correspondencia Externa", 50, 28);
 
   doc.setFontSize(10);
-  doc.text(`Nº Hoja: ${numero}`, 150, 10);
 
-  doc.setFontSize(9);
-  doc.text(`Fecha: ${fecha}`, 10, 50);
-  doc.text(`De: ${de}`, 10, 58);
-  doc.text(`Cargo: ${cargo}`, 100, 58);
-
-  doc.text(`Destinatario: ${destinatarioNombre}`, 10, 66);
-  doc.text(`Cargo destinatario: ${cargoDestinatario}`, 100, 66);
-
-  doc.text(`Referencia: ${referencia}`, 10, 74);
-
-  // PRIMER DESTINATARIO mayúsculas y negrillas
+  // Negritas en etiquetas constantes (remitente, cargo, destinatario, cargo destinatario, referencia)
   doc.setFont("helvetica", "bold");
-  doc.text("PRIMER DESTINATARIO:", 10, 82);
+  doc.text(`De:`, 10, 58);
+  doc.text(`Cargo:`, 100, 58);
+  doc.text(`Destinatario:`, 10, 66);
+  doc.text(`Cargo destinatario:`, 100, 66);
+  doc.text(`Referencia:`, 10, 74);
   doc.setFont("helvetica", "normal");
-
-  const primerDestX = 10;
-  const textoEtiqueta = "PRIMER DESTINATARIO:";
-  const etiquetaWidth = doc.getTextWidth(textoEtiqueta);
-  const margenDerecho = 200;
-  const espacioDisponible = margenDerecho - (primerDestX + etiquetaWidth + 5);
-
-  const textoDestinatario = `${destinatarioNombre} - ${cargoDestinatario}`;
-  const textoWidth = doc.getTextWidth(textoDestinatario);
-
-  const textoX = primerDestX + etiquetaWidth + 5 + (espacioDisponible / 2) - (textoWidth / 2);
-
-  doc.text(textoDestinatario, textoX, 82);
-
-  // INSTRUCTIVO en mayúsculas y negrillas
-  doc.setFont("helvetica", "bold");
-  doc.text("INSTRUCTIVO:", 10, 90);
-  doc.setFont("helvetica", "normal");
-
-  const splitText = doc.splitTextToSize(instructivo, 180);
-  doc.text(splitText, 10, 95);
-
-  doc.setFontSize(9);
-  doc.text("YPFB Cochabamba - Documento para uso interno oficial", 50, 280);
-
-  doc.save(`Hoja_Correspondencia_${numero}.pdf`);
-
-  document.getElementById('correspondenciaForm').reset();
-});
