@@ -20,8 +20,8 @@
       <label for="cargo">Cargo:</label>
       <input type="text" id="cargo" name="cargo" required />
 
-      <label for="paraSelect">Para:</label>
-      <select name="para" id="paraSelect" onchange="actualizarCargoPara()" required>
+      <label for="destinatarioSelect">Destinatario:</label>
+      <select name="destinatario" id="destinatarioSelect" onchange="actualizarCargoDestinatario()" required>
         <option value="">Seleccionar destinatario</option>
         <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">
           ESTEPHANYA FERNANDA ALVAREZ VARGAS - SECRETARIA GENERAL
@@ -43,8 +43,8 @@
         </option>
       </select>
 
-      <label for="cargoPara">Cargo destinatario:</label>
-      <input type="text" id="cargoPara" name="cargoPara" readonly />
+      <label for="cargoDestinatario">Cargo destinatario:</label>
+      <input type="text" id="cargoDestinatario" name="cargoDestinatario" readonly />
 
       <label for="asunto">Asunto:</label>
       <input type="text" id="asunto" name="asunto" required />
@@ -57,16 +57,16 @@
   </div>
 
   <script>
-    function actualizarCargoPara() {
-      const select = document.getElementById("paraSelect");
+    function actualizarCargoDestinatario() {
+      const select = document.getElementById("destinatarioSelect");
       const valor = select.value;
-      const campoCargoPara = document.getElementById("cargoPara");
+      const campoCargoDestinatario = document.getElementById("cargoDestinatario");
 
       if (valor.includes("|")) {
         const [nombre, cargo] = valor.split("|");
-        campoCargoPara.value = cargo;
+        campoCargoDestinatario.value = cargo;
       } else {
-        campoCargoPara.value = "";
+        campoCargoDestinatario.value = "";
       }
     }
   </script>
