@@ -1,76 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hoja de Correspondencia - YPFB</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hoja de Correspondencia - YPFB</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Hoja de Correspondencia Externa</h1>
-        <form id="correspondenciaForm">
-            <label>Fecha:</label>
-            <input type="date" name="fecha" required />
+  <div class="container">
+    <h1>Hoja de Correspondencia Externa</h1>
+    <form id="correspondenciaForm">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" required />
 
-            <label>De:</label>
-            <input type="text" name="de" required />
+      <label for="de">De:</label>
+      <input type="text" id="de" name="de" required />
 
-            <label>Cargo:</label>
-            <input type="text" name="cargo" required />
+      <label for="cargo">Cargo:</label>
+      <input type="text" id="cargo" name="cargo" required />
 
-            <label>Para:</label>
-            <select name="para" id="paraSelect" onchange="actualizarCargoPara()" required>
-                <option value="">Seleccionar destinatario</option>
-                <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">
-                    ESTEPHANYA FERNANDA ALVAREZ VARGAS - SECRETARIA GENERAL
-                </option>
-                <option value="CELINA VARGAS NOGALES|CHOFER">
-                    CELINA VARGAS NOGALES - CHOFER
-                </option>
-                <option value="PAOLA ALEXANDRA MOREIRA LEON|SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL">
-                    PAOLA ALEXANDRA MOREIRA LEON - SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL
-                </option>
-                <option value="KIMBERLY NATALY PONCE ROMERO|TECNICA DE CAMPO">
-                    KIMBERLY NATALY PONCE ROMERO - TECNICA DE CAMPO
-                </option>
-                <option value="ABIGAIL ROJAS ISIDRO|GERENTE REGIONAL DE YPFB">
-                    ABIGAIL ROJAS ISIDRO - GERENTE REGIONAL DE YPFB
-                </option>
-                <option value="FERNANDA CALISAYA TABOADA|JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL">
-                    FERNANDA CALISAYA TABOADA - JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL
-                </option>
-            </select>
+      <label for="paraSelect">Para:</label>
+      <select name="para" id="paraSelect" onchange="actualizarCargoPara()" required>
+        <option value="">Seleccionar destinatario</option>
+        <option value="ESTEPHANYA FERNANDA ALVAREZ VARGAS|SECRETARIA GENERAL">
+          ESTEPHANYA FERNANDA ALVAREZ VARGAS - SECRETARIA GENERAL
+        </option>
+        <option value="CELINA VARGAS NOGALES|CHOFER">
+          CELINA VARGAS NOGALES - CHOFER
+        </option>
+        <option value="PAOLA ALEXANDRA MOREIRA LEON|SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL">
+          PAOLA ALEXANDRA MOREIRA LEON - SECRETARIA DE TECNICO DE PARTICIPACION SOCIAL
+        </option>
+        <option value="KIMBERLY NATALY PONCE ROMERO|TECNICA DE CAMPO">
+          KIMBERLY NATALY PONCE ROMERO - TECNICA DE CAMPO
+        </option>
+        <option value="ABIGAIL ROJAS ISIDRO|GERENTE REGIONAL DE YPFB">
+          ABIGAIL ROJAS ISIDRO - GERENTE REGIONAL DE YPFB
+        </option>
+        <option value="FERNANDA CALISAYA TABOADA|JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL">
+          FERNANDA CALISAYA TABOADA - JEFA DE LA UNIDAD DE PARTICIPACION SOCIAL
+        </option>
+      </select>
 
-            <label>Cargo destinatario:</label>
-            <input type="text" name="cargoPara" id="cargoPara" readonly />
+      <label for="cargoPara">Cargo destinatario:</label>
+      <input type="text" id="cargoPara" name="cargoPara" readonly />
 
-            <label>Asunto:</label>
-            <input type="text" name="asunto" required />
+      <label for="asunto">Asunto:</label>
+      <input type="text" id="asunto" name="asunto" required />
 
-            <label>Contenido:</label>
-            <textarea name="contenido" rows="5" required></textarea>
+      <label for="contenido">Contenido:</label>
+      <textarea id="contenido" name="contenido" rows="5" required></textarea>
 
-            <button type="submit">Generar Hoja de Correspondencia</button>
-        </form>
-    </div>
+      <button type="submit" id="generarBtn">Generar Hoja de Correspondencia</button>
+    </form>
+  </div>
 
-    <script>
-        function actualizarCargoPara() {
-            const select = document.getElementById("paraSelect");
-            const valor = select.value;
-            const campoCargoPara = document.getElementById("cargoPara");
+  <script>
+    function actualizarCargoPara() {
+      const select = document.getElementById("paraSelect");
+      const valor = select.value;
+      const campoCargoPara = document.getElementById("cargoPara");
 
-            if (valor.includes("|")) {
-                const [nombre, cargo] = valor.split("|");
-                campoCargoPara.value = cargo;
-            } else {
-                campoCargoPara.value = "";
-            }
-        }
-    </script>
+      if (valor.includes("|")) {
+        const [nombre, cargo] = valor.split("|");
+        campoCargoPara.value = cargo;
+      } else {
+        campoCargoPara.value = "";
+      }
+    }
+  </script>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
