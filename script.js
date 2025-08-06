@@ -1,77 +1,107 @@
 document.getElementById('correspondenciaForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  codocument.getElementById('correspondenciaForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-    const logo = document.getElementById('logo').files[0];
-    const de = document.getElementById('de').value;
-    const cargo = document.getElementById('cargo').value;
-    const destinatarioNombre = document.getElementById('destinatarioNombre').value;
-    const cargoDestinatario = document.getElementById('cargoDestinatario').value;
-    const referencia = document.getElementById('referencia').value;
-    const instructivo = document.getElementById('instructivo').value;
+  const fecha = this.fecha.value;
+  const de = this.de.value;
+  const cargo = this.cargo.value;
+  const destinatarioRaw = this.destinatarioSelect.value;
+  if (!destinatarioRaw) {
+    alert("Por favor selecciona un destinatario.");
+    return;
+  }
+  const [destinatarioNombre] = destinatarioRaw.split("|");
+  const cargoDestinatario = this.cargoDestinatario.value;
+  const referencia = this.referencia.value;
+  const instructivo = this.instructivo.value;
 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const imgData = event.target.result;
+  let numeroSecuencial = localStorage.getItem('numeroHojaYPFB');
+  if (!numeroSecuencial) numeroSecuencial = 18200;
+  else numeroSecuencial = parseInt(numeroSecuencial, 10) + 1;
+  localStorage.setItem('numeroHojaYPFB', numeroSecuencial);
+  const numero = `YPFB-${numeroSecuencial}`;
 
-        const doc = new jspdf.jsPDF();
+  function cargarImagen(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("No se pudo cargar el logo"));
+      img.src = src;
+    });
+  }
 
-        // Número de hoja
-        doc.setFontSize(10);
-        doc.text("N° de hoja: YPFB-18215", 200 - doc.getTextWidth("N° de hoja: YPFB-18215") - 10, 10);
+  try {
+    const logo = await cargarImagen('logo-ypfb.png');
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const logoWidth = 30;
+    const logoHeight = 30;
+    const logoX = (pageWidth - logoWidth) / 2;
+    doc.addImage(logo, 'PNG', logoX, 10, logoWidth, logoHeight);
 
-        // Logo
-        doc.addImage(imgData, 'PNG', 90, 15, 30, 20);
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text(`Nº de hoja: ${numero}`, pageWidth - 10, 10, { align: "right" });
+  } catch (err) {
+    console.warn(err.message);
+  }
 
-        // Títulos
-        doc.setFontSize(14);
-        doc.setFont("helvetica", "bold");
-        doc.text("Yacimientos Petrolíferos Fiscales Bolivianos", 105, 45, null, null, 'center');
-        doc.setFontSize(12);
-        doc.text("Hoja Única de Correspondencia Externa", 105, 52, null, null, 'center');
+  const pageWidth = doc.internal.pageSize.getWidth();
 
-        // Recuadro datos generales
-        doc.rect(10, 60, 190, 30); 
-        doc.setFontSize(10);
-        doc.setFont("helvetica", "bold");
-        doc.text("De:", 12, 65);
-        doc.text("Cargo:", 100, 65);
-        doc.text("Destinatario:", 12, 72);
-        doc.text("Cargo destinatario:", 100, 72);
-        doc.text("Referencia:", 12, 79);
-        doc.setFont("helvetica", "normal");
-        doc.text(de, 25, 65);
-        doc.text(cargo, 113, 65);
-        doc.text(destinatarioNombre, 32, 72);
-        doc.text(cargoDestinatario, 130, 72);
-        doc.text(referencia, 32, 79);
+  // Títulos
+  doc.setFontSize(18);
+  const titulo1 = "Yacimientos Petrolíferos Fiscales Bolivianos";
+  doc.text(titulo1, (pageWidth - doc.getTextWidth(titulo1)) / 2, 42);
 
-        // Recuadro combinado Primer destinatario + Instructivo
-        doc.rect(10, 95, 190, 65);
-        doc.setFont("helvetica", "bold");
-        doc.text("PRIMER DESTINATARIO:", 12, 100);
-        doc.setFont("helvetica", "normal");
-        const primText = `${destinatarioNombre} - ${cargoDestinatario}`;
-        const primLines = doc.splitTextToSize(primText, 168);
-        doc.text(primLines, 15, 107);
+  doc.setFontSize(14);
+  const titulo2 = "Hoja Única de Correspondencia Externa";
+  doc.text(titulo2, (pageWidth - doc.getTextWidth(titulo2)) / 2, 47);
 
-        doc.setFont("helvetica", "bold");
-        doc.text("INSTRUCTIVO:", 12, 120);
-        doc.setFont("helvetica", "normal");
-        const instrLines = doc.splitTextToSize(instructivo, 168);
-        doc.text(instrLines, 15, 127);
+  doc.setFontSize(10);
 
-        // Mostrar PDF
-        doc.autoPrint();
-        window.open(doc.output('bloburl'), '_blank');
-    };
+  // Recuadro para datos generales
+  doc.rect(10, 52, 190, 20); // rectángulo grande
+  doc.setFont("helvetica", "bold");
+  doc.text("De:", 12, 57);
+  doc.text("Cargo:", 100, 57);
+  doc.text("Destinatario:", 12, 62);
+  doc.text("Cargo destinatario:", 100, 62);
+  doc.text("Referencia:", 12, 67);
+  doc.setFont("helvetica", "normal");
+  doc.text(de, 30, 57);
+  doc.text(cargo, 120, 57);
+  doc.text(destinatarioNombre, 42, 62);
+  doc.text(cargoDestinatario, 140, 62);
+  doc.text(referencia, 42, 67);
 
-    if (logo) {
-        reader.readAsDataURL(logo);
-    } else {
-        alert("Por favor, selecciona un archivo de imagen para el logo.");
-    }
+  // Recuadro primer destinatario
+  doc.setFont("helvetica", "bold");
+  doc.rect(10, 72, 190, 10);
+  doc.text("PRIMER DESTINATARIO:", 12, 78);
+  doc.setFont("helvetica", "normal");
+  doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 65, 78);
+
+  // Recuadro instructivo
+  doc.setFont("helvetica", "bold");
+  doc.rect(10, 85, 190, 40);
+  doc.text("INSTRUCTIVO:", 12, 91);
+  doc.setFont("helvetica", "normal");
+  const instructivoTexto = doc.splitTextToSize(instructivo, 185);
+  doc.text(instructivoTexto, 12, 96);
+
+  // Pie de página
+  doc.setFontSize(9);
+  const pie = "YPFB Cochabamba - Documento para uso interno oficial";
+  doc.text(pie, (pageWidth - doc.getTextWidth(pie)) / 2, 280);
+
+  const pdfUrl = doc.output('bloburl');
+  const printWindow = window.open(pdfUrl);
+  printWindow.focus();
+  printWindow.onload = function() {
+    printWindow.print();
+  };
+
+  this.reset();
 });
-
