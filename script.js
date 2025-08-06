@@ -40,62 +40,61 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
     const logoHeight = 30;
     const logoX = (pageWidth - logoWidth) / 2;
     doc.addImage(logo, 'PNG', logoX, 10, logoWidth, logoHeight);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text(`Nº de hoja: ${numero}`, pageWidth - 10, 10, { align: "right" });
   } catch (err) {
     console.warn(err.message);
   }
 
   const pageWidth = doc.internal.pageSize.getWidth();
 
-  // Ajustes verticales según tu pedido:
+  // Títulos
   doc.setFontSize(18);
   const titulo1 = "Yacimientos Petrolíferos Fiscales Bolivianos";
-  const titulo1Width = doc.getTextWidth(titulo1);
-  doc.text(titulo1, (pageWidth - titulo1Width) / 2, 42); // 34 + 5 puntos más abajo del logo
+  doc.text(titulo1, (pageWidth - doc.getTextWidth(titulo1)) / 2, 42);
 
   doc.setFontSize(14);
   const titulo2 = "Hoja Única de Correspondencia Externa";
-  const titulo2Width = doc.getTextWidth(titulo2);
-  doc.text(titulo2, (pageWidth - titulo2Width) / 2, 47); // 6 puntos menos desde antes (antes 51 aprox)
+  doc.text(titulo2, (pageWidth - doc.getTextWidth(titulo2)) / 2, 47);
 
   doc.setFontSize(10);
 
+  // Recuadro para datos generales
+  doc.rect(10, 52, 190, 20); // rectángulo grande
   doc.setFont("helvetica", "bold");
-  doc.text("De:", 10, 57); // 3 puntos menos (antes 60)
+  doc.text("De:", 12, 57);
   doc.text("Cargo:", 100, 57);
-  doc.text("Destinatario:", 10, 60);
-  doc.text("Cargo destinatario:", 100, 60);
-  doc.text("Referencia:", 10, 63);
+  doc.text("Destinatario:", 12, 62);
+  doc.text("Cargo destinatario:", 100, 62);
+  doc.text("Referencia:", 12, 67);
   doc.setFont("helvetica", "normal");
-
-  doc.text(de, 25, 57);
+  doc.text(de, 30, 57);
   doc.text(cargo, 120, 57);
-  doc.text(destinatarioNombre, 35, 60);
-  doc.text(cargoDestinatario, 140, 60);
-  doc.text(referencia, 35, 63);
+  doc.text(destinatarioNombre, 42, 62);
+  doc.text(cargoDestinatario, 140, 62);
+  doc.text(referencia, 42, 67);
 
+  // Recuadro primer destinatario
   doc.setFont("helvetica", "bold");
-  doc.text("PRIMER DESTINATARIO:", 10, 89);
-
-  const primerDestX = 10;
-  const espacioSeparacion = 17;
-  const etiquetaWidth = doc.getTextWidth("PRIMER DESTINATARIO:");
-  const textoX = primerDestX + etiquetaWidth + espacioSeparacion;
-
+  doc.rect(10, 72, 190, 10);
+  doc.text("PRIMER DESTINATARIO:", 12, 78);
   doc.setFont("helvetica", "normal");
-  const textoDestinatario = `${destinatarioNombre} - ${cargoDestinatario}`;
-  doc.text(textoDestinatario, textoX, 89);
+  doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 65, 78);
 
+  // Recuadro instructivo
   doc.setFont("helvetica", "bold");
-  doc.text("INSTRUCTIVO:", 10, 92);
+  doc.rect(10, 85, 190, 40);
+  doc.text("INSTRUCTIVO:", 12, 91);
   doc.setFont("helvetica", "normal");
+  const instructivoTexto = doc.splitTextToSize(instructivo, 185);
+  doc.text(instructivoTexto, 12, 96);
 
-  const splitText = doc.splitTextToSize(instructivo, 180);
-  doc.text(splitText, 10, 92);
-
+  // Pie de página
   doc.setFontSize(9);
   const pie = "YPFB Cochabamba - Documento para uso interno oficial";
-  const pieWidth = doc.getTextWidth(pie);
-  doc.text(pie, (pageWidth - pieWidth) / 2, 280);
+  doc.text(pie, (pageWidth - doc.getTextWidth(pie)) / 2, 280);
 
   const pdfUrl = doc.output('bloburl');
   const printWindow = window.open(pdfUrl);
@@ -106,4 +105,3 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
-
