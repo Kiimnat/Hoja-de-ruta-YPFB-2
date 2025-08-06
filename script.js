@@ -83,10 +83,10 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
   doc.setFont("helvetica", "normal");
   doc.text(`${destinatarioNombre} - ${cargoDestinatario}`, 65, 75);
  doc.setFont("helvetica", "bold");
-  doc.text("INSTRUCTIVO:", 12, 80);
+  doc.text("INSTRUCTIVO:", 12, 83);
   doc.setFont("helvetica", "normal");
   const instructivoTexto = doc.splitTextToSize(instructivo, 185);
-  doc.text(instructivoTexto, 12, 85);
+  doc.text(instructivoTexto, 12, 88);
 
   // Pie de página
   doc.setFontSize(9);
@@ -102,6 +102,7 @@ document.getElementById('correspondenciaForm').addEventListener('submit', async 
 
   this.reset();
 });
+
 
 
 
